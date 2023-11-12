@@ -216,14 +216,14 @@ router.post("/login", (req, res) => {
     res.header("Access-Control-Allow-Origin","*");
     res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
     console.log("inside add product");
-    // const path=req.body.product.imageUrl.split("C:\\fakepath\\")
+    const path=req.body.product.imageUrl.split("C:\\fakepath\\");
     const Product=new ProductData({
       name:req.body.product.name,
       price:req.body.product.price,
       tags:req.body.product.tags,
       favorite:req.body.product.favorite,
       stars:req.body.product.stars,
-      imageUrl:req.body.product.imageUrl,
+      imageUrl:path[1],
       category:req.body.product.category
     });
     Product.save();
