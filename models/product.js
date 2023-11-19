@@ -1,7 +1,11 @@
 const mongoose=require("mongoose");
 require("dotenv/config");
 
-mongoose.connect(process.env.MONGODB_url);
+mongoose.connect(process.env.MONGODB_url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true
+  });
 const Schema=mongoose.Schema;
 
 var productSchema=new Schema({
