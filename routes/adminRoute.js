@@ -169,7 +169,7 @@ router.post("/login", (req, res) => {
  
 
   router.post("/addToCart", (req, res) => {
-    res.header("Access-Control-Allow-Origin","*");
+    res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
     res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
     id=req.body._id;
     var cartItem ={
@@ -185,7 +185,7 @@ router.post("/login", (req, res) => {
 
 
   router.post("/addToCart", (req, res) => {
-    res.header("Access-Control-Allow-Origin","*");
+    res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
     res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
     id=req.body._id;
     var cartItem ={
@@ -202,7 +202,7 @@ router.post("/login", (req, res) => {
 
 
   router.post("/addCategory", (req, res) => {
-    res.header("Access-Control-Allow-Origin","*");
+    res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
     res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
    
  
@@ -213,7 +213,7 @@ router.post("/login", (req, res) => {
   });
 
   router.post("/addProduct",(req,res)=>{
-    res.header("Access-Control-Allow-Origin","*");
+    res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
     res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
     console.log("inside add product");
     const path=req.body.product.imageUrl.split("C:\\fakepath\\");
@@ -373,7 +373,7 @@ router.post("/login", (req, res) => {
 // });
 
 router.get('/getproductbyid/:id',function(req,res){
-  res.header("Access-Control-Allow-Origin","*");
+  res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
   res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
   console.log("the gen id is as follows:"+req.params.id)
   var query = { "_id": req.params.id };
@@ -386,7 +386,7 @@ router.get('/getproductbyid/:id',function(req,res){
 });
 
 router.get('/getuserbyid/:id',function(req,res){
-  res.header("Access-Control-Allow-Origin","*");
+  res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
   res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
   console.log("the gen id is as follows:"+req.params.id)
   var query = { "_id": req.params.id };
@@ -399,7 +399,7 @@ router.get('/getuserbyid/:id',function(req,res){
 });
 
 router.get('/getcategorybyid/:id',function(req,res){
-  res.header("Access-Control-Allow-Origin","*");
+  res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
   res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
   console.log("the gen id is as follows:"+req.params.id)
   var query = { "_id": req.params.id };
