@@ -373,7 +373,7 @@ router.post("/login", (req, res) => {
 // });
 
 router.get('/getproductbyid/:id',function(req,res){
-  res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
+  res.header("Access-Control-Allow-Origin","*");
   res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
   console.log("the gen id is as follows:"+req.params.id)
   var query = { "_id": req.params.id };
