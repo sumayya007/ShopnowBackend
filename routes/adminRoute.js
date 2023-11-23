@@ -37,7 +37,7 @@ function verifyToken(req, res, next) {
 // });
 
 const Storage=multer.diskStorage({
-  destination:'./images',
+  destination:'images',
   filename:function(req,file,cb){
     cb(null,file.originalname)
   }
@@ -216,6 +216,7 @@ router.post("/login", (req, res) => {
     res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
     res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
     console.log("inside add product");
+    console.log(req.file);
     const path=req.body.product.imageUrl.split("C:\\fakepath\\");
     const Product=new ProductData({
       name:req.body.product.name,
@@ -223,7 +224,7 @@ router.post("/login", (req, res) => {
       tags:req.body.product.tags,
       favorite:req.body.product.favorite,
       stars:req.body.product.stars,
-      imageUrl:"images/"+path[1],
+      imageUrl:"images/"+req.body.product.imageUrl,
       category:req.body.product.category
     });
     Product.save();
