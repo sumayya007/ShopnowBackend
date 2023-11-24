@@ -212,7 +212,10 @@ router.post("/login", (req, res) => {
     });
     Category.save();
   });
+router.post("/addImage",upload,(req,res)=>{
+console.log("inside add image");
 
+});
   router.post("/addProduct",(req,res)=>{
     
     console.log("inside add product");
