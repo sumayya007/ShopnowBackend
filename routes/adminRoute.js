@@ -36,14 +36,14 @@ function verifyToken(req, res, next) {
 //   }
 // });
 
-const Storage=multer.diskStorage({
-  destination:'./images',
+const storage=multer.diskStorage({
+  destination:'images',
   filename:function(req,file,cb){
     cb(null,file.originalname)
   }
 })
 
- upload = multer({ storage:Storage });
+ upload = multer({ storage:storage });
 
 
 
