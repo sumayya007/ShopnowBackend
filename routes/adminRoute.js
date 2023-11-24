@@ -213,9 +213,8 @@ router.post("/login", (req, res) => {
     Category.save();
   });
 
-  router.post("/addProduct",upload,(req,res)=>{
-    res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
-    res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
+  router.post("/addProduct",(req,res)=>{
+    
     console.log("inside add product");
     console.log(req.file);
     const path=req.body.product.imageUrl.split("C:\\fakepath\\");
