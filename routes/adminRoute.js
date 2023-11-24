@@ -224,7 +224,7 @@ router.post("/login", (req, res) => {
       tags:req.body.product.tags,
       favorite:req.body.product.favorite,
       stars:req.body.product.stars,
-      imageUrl:"images/"+req.file.filename,
+      imageUrl:"images/"+path[1],
       category:req.body.product.category
     });
     Product.save();
