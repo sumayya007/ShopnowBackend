@@ -36,21 +36,21 @@ function verifyToken(req, res, next) {
 //   }
 // });
 
-const storage=multer.diskStorage({
-  destination:'images',
+const Storage=multer.diskStorage({
+  destination:'./images',
   filename:function(req,file,cb){
     cb(null,file.originalname)
   }
 })
 
- upload = multer({ storage:storage }).single('file');
+ upload = multer({ storage:Storage }).single('file');
 
 
 
-//  router.post('/',upload,(req,res)=>{
-//   console.log("res",req.file);
+ router.post('/',upload,(req,res)=>{
+  console.log("res",req.file);
   
-//   });
+  });
  
 router.post("/signup", (req, res) => {
   console.log(req.body);
