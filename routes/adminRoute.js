@@ -48,6 +48,7 @@ const Storage=multer.diskStorage({
 
 
  router.post('/',upload,(req,res)=>{
+  console.log("hi");
   console.log("res",req.file);
   
   });
