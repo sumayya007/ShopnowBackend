@@ -27,8 +27,8 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended: true}));
 
 let gfs;
-// app.use("/images",express.static(path.join(__dirname+"/images")));
-app.use("/images",express.static(path.join("/public/")));
+ app.use("/images",express.static(path.join(__dirname+"/images")));
+// app.use("/images",express.static(path.join("/images")));
 
 
 app.use("/user", userRoute);

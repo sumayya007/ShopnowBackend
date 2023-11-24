@@ -37,7 +37,7 @@ function verifyToken(req, res, next) {
 // });
 
 const Storage=multer.diskStorage({
-  destination:'public/images/',
+  destination:'/images/',
   filename:function(req,file,cb){
     cb(null,file.originalname)
   }
