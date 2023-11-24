@@ -37,13 +37,13 @@ function verifyToken(req, res, next) {
 // });
 
 const Storage=multer.diskStorage({
-  destination:'images',
+  destination:'public/images/',
   filename:function(req,file,cb){
     cb(null,file.originalname)
   }
 })
 
- upload = multer({ storage:Storage }).single('file');
+ upload = multer({ storage:Storage });
 
 
 
@@ -212,7 +212,7 @@ router.post("/login", (req, res) => {
     Category.save();
   });
 
-  router.post("/addProduct",upload,(req,res)=>{
+  router.post("/addProduct",upload.single('imageUrl'),(req,res)=>{
     res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
     res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
     console.log("inside add product");
@@ -224,7 +224,7 @@ router.post("/login", (req, res) => {
       tags:req.body.product.tags,
       favorite:req.body.product.favorite,
       stars:req.body.product.stars,
-      imageUrl:"http://localhost:3000/images/"+path[1],
+      imageUrl:req.file.filename,
       category:req.body.product.category
     });
     Product.save();
