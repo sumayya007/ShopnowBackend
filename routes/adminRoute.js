@@ -43,7 +43,7 @@ const storage=multer.diskStorage({
   }
 })
 
- upload = multer({ storage:storage });
+ upload = multer({ storage:storage }).single('file');
 
 
 
@@ -212,7 +212,7 @@ router.post("/login", (req, res) => {
     Category.save();
   });
 
-  router.post("/addProduct",upload.single('imageUrl'),(req,res)=>{
+  router.post("/addProduct",upload,(req,res)=>{
     res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
     res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
     console.log("inside add product");
