@@ -222,23 +222,23 @@ console.log("inside add image");
 console.log(req.body.file);
 
 });
-  router.post("/addProduct",(req,res)=>{
-    res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
-    res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
-    console.log("inside add product");
-    console.log(req.file);
-    const path=req.body.product.imageUrl.split("C:\\fakepath\\");
-    const Product=new ProductData({
-      name:req.body.product.name,
-      price:req.body.product.price,
-      tags:req.body.product.tags,
-      favorite:req.body.product.favorite,
-      stars:req.body.product.stars,
-      imageUrl:path[1],
-      category:req.body.product.category
-    });
-    Product.save();
-  })
+  // router.post("/addProduct",(req,res)=>{
+  //   res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
+  //   res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
+  //   console.log("inside add product");
+  //   console.log(req.file);
+  //   const path=req.body.product.imageUrl.split("C:\\fakepath\\");
+  //   const Product=new ProductData({
+  //     name:req.body.product.name,
+  //     price:req.body.product.price,
+  //     tags:req.body.product.tags,
+  //     favorite:req.body.product.favorite,
+  //     stars:req.body.product.stars,
+  //     imageUrl:path[1],
+  //     category:req.body.product.category
+  //   });
+  //   Product.save();
+  // })
   
 
 
