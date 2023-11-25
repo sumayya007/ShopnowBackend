@@ -39,12 +39,12 @@ function verifyToken(req, res, next) {
 const storage=multer.diskStorage({
   destination: function (req, file, cb) {
 
-    cb(null, '/images')
+    cb(null, 'images/')
   },
   filename:function(req,file,cb){
     cb(null,file.originalname)
   }
-})
+});
 
  upload = multer({ storage:storage }).single('file');
 
@@ -215,6 +215,7 @@ router.post("/login", (req, res) => {
     });
     Category.save();
   });
+  
 router.post("/addImage",upload,(req,res)=>{
   res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
   res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
