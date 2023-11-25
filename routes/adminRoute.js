@@ -36,16 +36,19 @@ function verifyToken(req, res, next) {
 //   }
 // });
 
-const Storage=multer.diskStorage({
-  destination:'./images',
+const storage=multer.diskStorage({
+  destination: function (req, file, cb) {
+
+    cb(null, '/images')
+  },
   filename:function(req,file,cb){
     cb(null,file.originalname)
   }
 })
 
- upload = multer({ storage:Storage }).single('file');
+ upload = multer({ storage:storage }).single('file');
 
-
+//  app.use(multer({dest:'./angular-src/src/assets/'}).single('file')); 
 
  router.post('/',upload,(req,res)=>{
   console.log("hi");
@@ -214,6 +217,7 @@ router.post("/login", (req, res) => {
   });
 router.post("/addImage",upload,(req,res)=>{
 console.log("inside add image");
+console.log(req.body.file);
 
 });
   router.post("/addProduct",(req,res)=>{
