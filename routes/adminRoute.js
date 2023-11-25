@@ -36,17 +36,16 @@ function verifyToken(req, res, next) {
 //   }
 // });
 
-const storage=multer.diskStorage({
+const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-
-    cb(null, 'images/')
+    cb(null, '/images')
   },
-  filename:function(req,file,cb){
-    cb(null,file.originalname)
+  filename: function (req, file, cb) {
+    cb(null, file.originalname)
   }
-});
+})
 
- upload = multer({ storage:storage }).single('file');
+const upload = multer({ storage: storage });
 
 //  app.use(multer({dest:'./angular-src/src/assets/'}).single('file')); 
 
@@ -216,30 +215,30 @@ router.post("/login", (req, res) => {
     Category.save();
   });
   
-router.post("/addImage",upload,(req,res)=>{
-  res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
-  res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
-console.log("inside add image");
-console.log(req.body.file);
+// router.post("/addImage",upload,(req,res)=>{
+//   res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
+//   res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
+// console.log("inside add image");
+// console.log(req.body.file);
 
-});
-  // router.post("/addProduct",(req,res)=>{
-  //   res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
-  //   res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
-  //   console.log("inside add product");
-  //   console.log(req.file);
-  //   const path=req.body.product.imageUrl.split("C:\\fakepath\\");
-  //   const Product=new ProductData({
-  //     name:req.body.product.name,
-  //     price:req.body.product.price,
-  //     tags:req.body.product.tags,
-  //     favorite:req.body.product.favorite,
-  //     stars:req.body.product.stars,
-  //     imageUrl:path[1],
-  //     category:req.body.product.category
-  //   });
-  //   Product.save();
-  // })
+// });
+  router.post("/addProduct",upload.single('file'),(req,res)=>{
+    res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
+    res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
+    console.log("inside add product");
+    console.log(req.file);
+    const path=req.body.product.imageUrl.split("C:\\fakepath\\");
+    const Product=new ProductData({
+      name:req.body.product.name,
+      price:req.body.product.price,
+      tags:req.body.product.tags,
+      favorite:req.body.product.favorite,
+      stars:req.body.product.stars,
+      imageUrl:"https://shopnowapi-ydrz.onrender.com/images/"+path[1],
+      category:req.body.product.category
+    });
+    Product.save();
+  })
   
 
 
