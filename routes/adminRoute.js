@@ -45,15 +45,9 @@ const storage = multer.diskStorage({
   }
 })
 
-const upload = multer({ storage: storage });
+const upload = multer({ storage: storage }).single('file');
 
-//  app.use(multer({dest:'./angular-src/src/assets/'}).single('file')); 
 
- router.post('/',upload,(req,res)=>{
-  console.log("hi");
-  console.log("res",req.file);
-  
-  });
  
 router.post("/signup", (req, res) => {
   console.log(req.body);
@@ -213,6 +207,8 @@ router.post("/login", (req, res) => {
       name: req.body.category.name,
     });
     Category.save();
+
+
   });
   
 // router.post("/addImage",upload,(req,res)=>{
@@ -222,7 +218,7 @@ router.post("/login", (req, res) => {
 // console.log(req.body.file);
 
 // });
-  router.post("/addProduct",upload.single('file'),(req,res)=>{
+  router.post("/addProduct",upload,(req,res)=>{
     res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
     res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
     console.log("inside add product");
