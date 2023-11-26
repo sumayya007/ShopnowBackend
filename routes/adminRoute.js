@@ -72,11 +72,11 @@ router.post("/login", (req, res) => {
     });
   });
 
-  router.post('/',upload.single('imageUrl'),(req,res)=>{
-    res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
-    res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
-    res.send(req.file);
-    });
+  // router.post('/',upload.single('imageUrl'),(req,res)=>{
+  //   res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
+  //   res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
+  //   res.send(req.file);
+  //   });
 
 
   router.get("/adminGetUsers",(req,res)=>{
@@ -222,7 +222,7 @@ router.post("/login", (req, res) => {
 // console.log(req.body.file);
 
 // });
-  router.post("/addProduct",(req,res)=>{
+  router.post("/addProduct",upload.single('imageUrl'),(req,res)=>{
     res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
     res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
     console.log("inside add product");
