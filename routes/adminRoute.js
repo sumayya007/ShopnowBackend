@@ -11,14 +11,16 @@ const { db } = require("../models/admin");
 const multer=require("multer");
 
 const storage=multer.diskStorage({
-  destination:'./images',
+  destination:function(req,file,cb){
+    cb(null,"images")
+  },
   filename:function(req,file,cb){
     cb(null,file.originalname)
   }
 })
 const upload=multer({storage:storage});
 
-router.post("/addProduct",upload.single('imageUrl'),(req,res)=>{
+router.post("/addProduct",upload.single('file'),(req,res)=>{
   res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
   res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
   console.log("inside add product");
