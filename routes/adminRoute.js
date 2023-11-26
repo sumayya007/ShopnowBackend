@@ -72,7 +72,9 @@ router.post("/login", (req, res) => {
     });
   });
 
-  router.post('/',upload.single('file'),(req,res)=>{
+  router.post('/',upload.single('imageUrl'),(req,res)=>{
+    res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
+    res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
     res.send(req.file);
     });
 
