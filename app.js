@@ -12,6 +12,7 @@ const {hash,compare}=require("bcryptjs");
 const userRoute = require("./routes/userRoute");
 const adminRoute = require("./routes/adminRoute");
 const Grid=require('gridfs-stream');
+const multer=require("multer");
 
 const PORT = process.env.PORT || 3000;
 const app = new express();
@@ -36,7 +37,7 @@ app.use("/images",express.static(path.join(__dirname+"/images")));
 app.use("/user", userRoute);
 app.use("/admin",adminRoute);
 
-
+app.use(multer({dest:'./images'}).single('imageUrl'));
 app.listen(PORT, () => {
   console.log(`listening to ${PORT}`);
 });

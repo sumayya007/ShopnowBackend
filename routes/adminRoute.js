@@ -11,7 +11,7 @@ const { db } = require("../models/admin");
 const multer=require("multer");
 
 const storage=multer.diskStorage({
-  destination:'../images',
+  destination:'./images',
   filename:function(req,file,cb){
     cb(null,file.originalname)
   }
@@ -90,7 +90,7 @@ router.post("/login", (req, res) => {
   //   res.send(req.file);
   //   });
 
-  
+
 
   router.get("/adminGetUsers",(req,res)=>{
     UserData.find().then((users)=>{
