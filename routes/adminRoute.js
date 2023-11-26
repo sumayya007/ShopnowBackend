@@ -36,16 +36,14 @@ function verifyToken(req, res, next) {
 //   }
 // });
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, '/images')
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname)
+
+const storage=multer.diskStorage({
+  destination:'./images',
+  filename:function(req,file,cb){
+    cb(null,file.originalname)
   }
 })
-
-const upload = multer({ storage: storage }).single('file');
+const upload=multer({storage:storage});
 
 
  
@@ -73,6 +71,10 @@ router.post("/login", (req, res) => {
         res.send(adminlogin);
     });
   });
+
+  router.post('/',upload.single('file'),(req,res)=>{
+    res.send(req.file);
+    });
 
 
   router.get("/adminGetUsers",(req,res)=>{
@@ -218,7 +220,7 @@ router.post("/login", (req, res) => {
 // console.log(req.body.file);
 
 // });
-  router.post("/addProduct",upload,(req,res)=>{
+  router.post("/addProduct",(req,res)=>{
     res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
     res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
     console.log("inside add product");
