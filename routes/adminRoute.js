@@ -7,9 +7,35 @@ const CartItemData=require("../models/cartitem");
 const router = express.Router();
 const path = require('path');
 const jwt = require("jsonwebtoken");
+const { db } = require("../models/admin");
 const multer=require("multer");
 
-const { db } = require("../models/admin");
+const storage=multer.diskStorage({
+  destination:'../images',
+  filename:function(req,file,cb){
+    cb(null,file.originalname)
+  }
+})
+const upload=multer({storage:storage});
+
+router.post("/addProduct",upload.single('imageUrl'),(req,res)=>{
+  res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
+  res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
+  console.log("inside add product");
+  console.log(req.file);
+  const path=req.body.product.imageUrl.split("C:\\fakepath\\");
+  const Product=new ProductData({
+    name:req.body.product.name,
+    price:req.body.product.price,
+    tags:req.body.product.tags,
+    favorite:req.body.product.favorite,
+    stars:req.body.product.stars,
+    imageUrl:"https://shopnowapi-ydrz.onrender.com/images/"+path[1],
+    category:req.body.product.category
+  });
+  Product.save();
+});
+
 
 
 function verifyToken(req, res, next) {
@@ -28,25 +54,11 @@ function verifyToken(req, res, next) {
   next();
 }
 
-// var Storage = multer.diskStorage({
-//   destination: './images/',
-//   filename: (req, file, cb)=> {
-//     // cb(null, `${Date.now()}_${file.originalname}`);
-//     cb(null,file.fieldname+"_"+Date.now()+path.extname(file.originalname));
-//   }
-// });
 
 
-const storage=multer.diskStorage({
-  destination:'../images',
-  filename:function(req,file,cb){
-    cb(null,file.originalname)
-  }
-})
-const upload=multer({storage:storage});
 
 
- 
+
 router.post("/signup", (req, res) => {
   console.log(req.body);
   const admin = new AdminData({
@@ -78,6 +90,7 @@ router.post("/login", (req, res) => {
   //   res.send(req.file);
   //   });
 
+  
 
   router.get("/adminGetUsers",(req,res)=>{
     UserData.find().then((users)=>{
@@ -222,24 +235,7 @@ router.post("/login", (req, res) => {
 // console.log(req.body.file);
 
 // });
-  router.post("/addProduct",upload.single('imageUrl'),(req,res)=>{
-    res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
-    res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
-    console.log("inside add product");
-    console.log(req.file);
-    const path=req.body.product.imageUrl.split("C:\\fakepath\\");
-    const Product=new ProductData({
-      name:req.body.product.name,
-      price:req.body.product.price,
-      tags:req.body.product.tags,
-      favorite:req.body.product.favorite,
-      stars:req.body.product.stars,
-      imageUrl:"https://shopnowapi-ydrz.onrender.com/images/"+path[1],
-      category:req.body.product.category
-    });
-    Product.save();
-  })
-  
+ 
 
 
   router.put('/update',(req,res)=>{

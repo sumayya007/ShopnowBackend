@@ -21,6 +21,7 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Origin', 'X-Requested-With', 'Accept', 'x-client-key', 'x-client-token', 'x-client-secret', 'Authorization'],
   credentials: true
 }));
+
 // app.use(cors());
 app.use(cookieParser());
 app.use(bodyparser.json());
@@ -28,6 +29,7 @@ app.use(bodyparser.urlencoded({extended: true}));
 
 let gfs;
 app.use("/images",express.static(path.join(__dirname+"/images")));
+// app.use('/uploads', express.static(__dirname));
 // app.use("/images",express.static(path.join("/images")));
 
 
