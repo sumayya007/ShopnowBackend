@@ -9,7 +9,7 @@ const path = require('path');
 const jwt = require("jsonwebtoken");
 const { db } = require("../models/admin");
 const multer=require("multer");
-
+const cloudinary=require("../cloudinary")
 const storage=multer.diskStorage({
   destination:function(req,file,cb){
     cb(null,"images")
@@ -17,12 +17,31 @@ const storage=multer.diskStorage({
   filename:function(req,file,cb){
     cb(null,file.originalname)
   }
-})
+});
+
 const upload=multer({storage:storage});
 
 router.post("/addProduct",upload.single('file'),(req,res)=>{
   res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
   res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
+ cloudinary.uploader.upload(req.file.path,function(err,result){
+  if(err){
+    console.log(err);
+    return res.status(500).json({
+      success:false,
+      message:"Error"
+    })
+  }
+  res.status(200).json({
+    success:true,
+    message:"Upladed!",
+    data:result
+  })
+ })
+ 
+ 
+ 
+ 
   console.log("inside add product");
   console.log(req.file);
   const path=req.body.product.imageUrl.split("C:\\fakepath\\");
