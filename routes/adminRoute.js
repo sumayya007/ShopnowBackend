@@ -25,7 +25,7 @@ const upload=multer({storage:storage});
 router.post("/addProduct",upload.single('file'),(req,res)=>{
   res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
   res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
-  console.log("got iamge as",req.file);
+  console.log("got iamge as",req.body.file);
  cloudinary.uploader.upload(req.file.path,function(err,result){
   if(err){
     console.log(err);
