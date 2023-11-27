@@ -21,10 +21,10 @@ const storage=multer.diskStorage({
 });
 
 const upload=multer({storage:storage});
-router.post('/',upload.single('imageUrl'),(req,res)=>{
+router.post('/uploadimage',upload.single('image'),(req,res)=>{
   res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
   res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
-  console.log("got iamge as",req.body.file);
+  console.log("got iamge as",req.file);
   res.send(req.file);
   });
 
