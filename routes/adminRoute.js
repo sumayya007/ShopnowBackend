@@ -4,6 +4,7 @@ const UserData = require("../models/user");
 const ProductData=require("../models/product");
 const CategoryData=require("../models/category");
 const CartItemData=require("../models/cartitem");
+
 const router = express.Router();
 const path = require('path');
 const jwt = require("jsonwebtoken");
@@ -12,7 +13,7 @@ const multer=require("multer");
 const cloudinary=require("../cloudinary")
 const storage=multer.diskStorage({
   destination:function(req,file,cb){
-    cb(null,"images")
+    cb(null,"../images");
   },
   filename:function(req,file,cb){
     cb(null,file.originalname)
@@ -24,6 +25,7 @@ const upload=multer({storage:storage});
 router.post("/addProduct",upload.single('file'),(req,res)=>{
   res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
   res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
+  console.log("got iamge as",req.file);
  cloudinary.uploader.upload(req.file.path,function(err,result){
   if(err){
     console.log(err);
