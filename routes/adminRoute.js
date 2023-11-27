@@ -21,11 +21,17 @@ const storage=multer.diskStorage({
 });
 
 const upload=multer({storage:storage});
-
-router.post("/addProduct",upload.single('file'),(req,res)=>{
+router.post('/',upload.single('imageUrl'),(req,res)=>{
   res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
   res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
   console.log("got iamge as",req.body.file);
+  res.send(req.file);
+  });
+
+router.post("/addProduct",(req,res)=>{
+  res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
+  res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
+ 
  cloudinary.uploader.upload(req.file.path,function(err,result){
   if(err){
     console.log(err);
@@ -107,11 +113,7 @@ router.post("/login", (req, res) => {
     });
   });
 
-  // router.post('/',upload.single('imageUrl'),(req,res)=>{
-  //   res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
-  //   res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
-  //   res.send(req.file);
-  //   });
+ 
 
 
 
