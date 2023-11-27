@@ -44,19 +44,19 @@ router.post("/addProduct",upload.single('file'),(req,res)=>{
  
  
  
-  console.log("inside add product");
-  console.log(req.file);
-  const path=req.body.product.imageUrl.split("C:\\fakepath\\");
-  const Product=new ProductData({
-    name:req.body.product.name,
-    price:req.body.product.price,
-    tags:req.body.product.tags,
-    favorite:req.body.product.favorite,
-    stars:req.body.product.stars,
-    imageUrl:"https://shopnowapi-ydrz.onrender.com/images/"+path[1],
-    category:req.body.product.category
-  });
-  Product.save();
+  // console.log("inside add product");
+  // console.log(req.file);
+  // const path=req.body.product.imageUrl.split("C:\\fakepath\\");
+  // const Product=new ProductData({
+  //   name:req.body.product.name,
+  //   price:req.body.product.price,
+  //   tags:req.body.product.tags,
+  //   favorite:req.body.product.favorite,
+  //   stars:req.body.product.stars,
+  //   imageUrl:"https://shopnowapi-ydrz.onrender.com/images/"+path[1],
+  //   category:req.body.product.category
+  // });
+  // Product.save();
 });
 
 
