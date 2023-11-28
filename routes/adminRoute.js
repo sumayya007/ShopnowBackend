@@ -21,6 +21,7 @@ const storage=multer.diskStorage({
 });
 
 const upload=multer({storage:storage});
+
 router.post('/uploadimage',upload.single('image'),(req,res)=>{
   res.header("Access-Control-Allow-Origin","https://shopnow-wojb.onrender.com");
   res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
@@ -29,42 +30,42 @@ router.post('/uploadimage',upload.single('image'),(req,res)=>{
   });
   
 
-router.post("/addProduct",(req,res)=>{
-  res.header("Access-Control-Allow-Origin","https://shopnow-wojb.onrender.com");
-  res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
+// router.post("/addProduct",(req,res)=>{
+//   res.header("Access-Control-Allow-Origin","https://shopnow-wojb.onrender.com");
+//   res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
  
- cloudinary.uploader.upload(req.file.path,function(err,result){
-  if(err){
-    console.log(err);
-    return res.status(500).json({
-      success:false,
-      message:"Error"
-    })
-  }
-  res.status(200).json({
-    success:true,
-    message:"Upladed!",
-    data:result
-  })
- })
- 
- 
+//  cloudinary.uploader.upload(req.file.path,function(err,result){
+//   if(err){
+//     console.log(err);
+//     return res.status(500).json({
+//       success:false,
+//       message:"Error"
+//     })
+//   }
+//   res.status(200).json({
+//     success:true,
+//     message:"Upladed!",
+//     data:result
+//   })
+//  })
  
  
-  // console.log("inside add product");
-  // console.log(req.file);
-  // const path=req.body.product.imageUrl.split("C:\\fakepath\\");
-  // const Product=new ProductData({
-  //   name:req.body.product.name,
-  //   price:req.body.product.price,
-  //   tags:req.body.product.tags,
-  //   favorite:req.body.product.favorite,
-  //   stars:req.body.product.stars,
-  //   imageUrl:"https://shopnowapi-ydrz.onrender.com/images/"+path[1],
-  //   category:req.body.product.category
-  // });
-  // Product.save();
-});
+ 
+ 
+//   // console.log("inside add product");
+//   // console.log(req.file);
+//   // const path=req.body.product.imageUrl.split("C:\\fakepath\\");
+//   // const Product=new ProductData({
+//   //   name:req.body.product.name,
+//   //   price:req.body.product.price,
+//   //   tags:req.body.product.tags,
+//   //   favorite:req.body.product.favorite,
+//   //   stars:req.body.product.stars,
+//   //   imageUrl:"https://shopnowapi-ydrz.onrender.com/images/"+path[1],
+//   //   category:req.body.product.category
+//   // });
+//   // Product.save();
+// });
 
 
 
