@@ -60,7 +60,7 @@ router.get("/getUsers", (req, res) => {
 
 
 router.get('/getUserByEmail/:email',function(req,res){
-  res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
+  res.header("Access-Control-Allow-Origin","https://shopnow-wojb.onrender.com");
   res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
   console.log("the gen email id is as follows:"+req.params.email)
   var query = { "email": req.params.email };
@@ -83,7 +83,7 @@ router.get("/getCartItems",(req, res) => {
 
 router.get('/getCartItemsById/:id', (req, res) => {
 
-  res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
+  res.header("Access-Control-Allow-Origin","https://shopnow-wojb.onrender.com");
   res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
   console.log("the gen id is as follows:"+req.params.id)
   var query = { "userId": req.params.id };
@@ -96,7 +96,7 @@ router.get('/getCartItemsById/:id', (req, res) => {
 });
 router.get('/getCartItemsByName/:name', (req, res) => {
 
-  res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
+  res.header("Access-Control-Allow-Origin","https://shopnow-wojb.onrender.com");
   res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
   console.log("the gen id is as follows:"+req.params.name)
   var query = { "name": req.params.name };
@@ -111,7 +111,7 @@ router.get('/getCartItemsByName/:name', (req, res) => {
 
 router.get('/getCart/:id', (req, res) => {
 
-  res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
+  res.header("Access-Control-Allow-Origin","https://shopnow-wojb.onrender.com");
   res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
   console.log("the gen id is as follows:"+req.params.id)
   var query = { "_id": req.params.id };
@@ -124,7 +124,7 @@ router.get('/getCart/:id', (req, res) => {
 });
 
 router.post('/usersignin',async function(req,res){
-  res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
+  res.header("Access-Control-Allow-Origin","https://shopnow-wojb.onrender.com");
   res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
   console.log("got signin user",req.body.user);
   const user=req.body.user;
@@ -194,7 +194,7 @@ router.get('/getUserByName/:name',  (req, res) => {
   
  
   console.log("inside /getemp");
-    res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
+    res.header("Access-Control-Allow-Origin","https://shopnow-wojb.onrender.com");
     res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
     
     UserData.findOne({"name":name})
@@ -213,7 +213,7 @@ router.get('/getProduct/:id', (req, res) => {
 });
 
 router.get('/getUserById/:id',function(req,res){
-  res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
+  res.header("Access-Control-Allow-Origin","https://shopnow-wojb.onrender.com");
   res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
   console.log("the gen id is as follows:"+req.params.id)
   var query = { "_id": req.params.id };
@@ -227,7 +227,7 @@ router.get('/getUserById/:id',function(req,res){
 
 
 router.post('/addToCart/:id',function(req,res){
-  res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
+  res.header("Access-Control-Allow-Origin","https://shopnow-wojb.onrender.com");
   res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
   console.log(req.body.product);
   userid=req.params.id;

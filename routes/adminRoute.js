@@ -22,14 +22,15 @@ const storage=multer.diskStorage({
 
 const upload=multer({storage:storage});
 router.post('/uploadimage',upload.single('image'),(req,res)=>{
-  res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
+  res.header("Access-Control-Allow-Origin","https://shopnow-wojb.onrender.com");
   res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
   console.log("got iamge as",req.file);
   res.send(req.file);
   });
+  
 
 router.post("/addProduct",(req,res)=>{
-  res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
+  res.header("Access-Control-Allow-Origin","https://shopnow-wojb.onrender.com");
   res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
  
  cloudinary.uploader.upload(req.file.path,function(err,result){
@@ -208,7 +209,7 @@ router.post("/login", (req, res) => {
  
 
   router.post("/addToCart", (req, res) => {
-    res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
+    res.header("Access-Control-Allow-Origin","https://shopnow-wojb.onrender.com");
     res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
     id=req.body._id;
     var cartItem ={
@@ -224,7 +225,7 @@ router.post("/login", (req, res) => {
 
 
   router.post("/addToCart", (req, res) => {
-    res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
+    res.header("Access-Control-Allow-Origin","https://shopnow-wojb.onrender.com");
     res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
     id=req.body._id;
     var cartItem ={
@@ -241,7 +242,7 @@ router.post("/login", (req, res) => {
 
 
   router.post("/addCategory", (req, res) => {
-    res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
+    res.header("Access-Control-Allow-Origin","https://shopnow-wojb.onrender.com");
     res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
    
  
@@ -254,7 +255,7 @@ router.post("/login", (req, res) => {
   });
   
 // router.post("/addImage",upload,(req,res)=>{
-//   res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
+//   res.header("Access-Control-Allow-Origin","https://shopnow-wojb.onrender.com");
 //   res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
 // console.log("inside add image");
 // console.log(req.body.file);
@@ -418,7 +419,7 @@ router.get('/getproductbyid/:id',function(req,res){
 });
 
 router.get('/getuserbyid/:id',function(req,res){
-  res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
+  res.header("Access-Control-Allow-Origin","https://shopnow-wojb.onrender.com");
   res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
   console.log("the gen id is as follows:"+req.params.id)
   var query = { "_id": req.params.id };
@@ -431,7 +432,7 @@ router.get('/getuserbyid/:id',function(req,res){
 });
 
 router.get('/getcategorybyid/:id',function(req,res){
-  res.header("Access-Control-Allow-Origin","https://shopnow-bsu7.onrender.com");
+  res.header("Access-Control-Allow-Origin","https://shopnow-wojb.onrender.com");
   res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
   console.log("the gen id is as follows:"+req.params.id)
   var query = { "_id": req.params.id };
