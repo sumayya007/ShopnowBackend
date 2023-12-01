@@ -13,9 +13,13 @@ const userRoute = require("./routes/userRoute");
 const adminRoute = require("./routes/adminRoute");
 const Grid=require('gridfs-stream');
 const multer=require("multer");
+const fileupload=require("express-fileupload");
 
 const PORT = process.env.PORT || 3000;
 const app = new express();
+app.use(fileupload({
+  useTempFiles:true
+}))
 app.use(cors({
   origin: 'https://shopnow-wojb.onrender.com', 
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'],

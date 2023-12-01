@@ -9,45 +9,56 @@ const router = express.Router();
 const path = require('path');
 const jwt = require("jsonwebtoken");
 const { db } = require("../models/admin");
-const multer=require("multer");
-const cloudinary=require("../cloudinary")
-const storage=multer.diskStorage({
-  destination:function(req,file,cb){
-    cb(null,"../images");
-  },
-  filename:function(req,file,cb){
-    cb(null,file.originalname)
-  }
+// const multer=require("multer");
+
+// const storage=multer.diskStorage({
+//   destination:function(req,file,cb){
+//     cb(null,"../images");
+//   },
+//   filename:function(req,file,cb){
+//     cb(null,file.originalname)
+//   }
+// });
+
+// const upload=multer({storage:storage});
+const cloudinary=require('cloudinary').v2;
+
+cloudinary.config({
+    cloud_name:process.env.CLOUDINARY_CLOUD_NAME,
+    api_key:process.env.CLOUDINARY_API_KEY,
+    api_secret:process.env.CLOUDINARY_SECRET_KEY
 });
 
-const upload=multer({storage:storage});
 
-router.post('/uploadimage',upload.single('image'),(req,res)=>{
-  res.header("Access-Control-Allow-Origin","https://shopnow-wojb.onrender.com");
-  res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
-  console.log("got iamge as",req.file);
-  res.send(req.file);
-  });
-  
 
-// router.post("/addProduct",(req,res)=>{
+// router.post('/uploadimage',upload.single('image'),(req,res)=>{
+//   console.log("hi");
 //   res.header("Access-Control-Allow-Origin","https://shopnow-wojb.onrender.com");
 //   res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
- 
-//  cloudinary.uploader.upload(req.file.path,function(err,result){
-//   if(err){
-//     console.log(err);
-//     return res.status(500).json({
-//       success:false,
-//       message:"Error"
-//     })
-//   }
-//   res.status(200).json({
-//     success:true,
-//     message:"Upladed!",
-//     data:result
-//   })
-//  })
+//   console.log("got iamge as",req.file);
+
+//   res.send(req.file);
+//   });
+  
+ router.post("/addProduct",(req,res)=>{
+//   res.header("Access-Control-Allow-Origin","https://shopnow-wojb.onrender.com");
+//   res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
+ const file=req.files.image;
+ cloudinary.uploader.upload(file.tempFilePath,function(err,result){
+  console.log(result);
+  // if(err){
+  //   console.log(err);
+  //   return res.status(500).json({
+  //     success:false,
+  //     message:"Error"
+  //   })
+  // }
+  // res.status(200).json({
+  //   success:true,
+  //   message:"Upladed!",
+  //   data:result
+  // })
+ })
  
  
  
@@ -65,7 +76,7 @@ router.post('/uploadimage',upload.single('image'),(req,res)=>{
 //   //   category:req.body.product.category
 //   // });
 //   // Product.save();
-// });
+});
 
 
 
