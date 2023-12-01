@@ -51,7 +51,7 @@ cloudinary.config({
     console.log(err);
     return res.status(500).json({
       success:false,
-      message:"Error"
+      message:"Error in Result"
     })
   }
  
