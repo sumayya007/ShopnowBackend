@@ -46,6 +46,19 @@ cloudinary.config({
  const file=req.files.image;
  cloudinary.uploader.upload(file.tempFilePath,function(err,result){
   console.log(result);
+    console.log("inside add product");
+
+  // const path=req.body.product.imageUrl.split("C:\\fakepath\\");
+  const Product=new ProductData({
+    name:req.body.product.name,
+    price:req.body.product.price,
+    tags:req.body.product.tags,
+    favorite:req.body.product.favorite,
+    stars:req.body.product.stars,
+    imageUrl:result.url,
+    category:req.body.product.category
+  });
+  Product.save();
   // if(err){
   //   console.log(err);
   //   return res.status(500).json({
@@ -63,19 +76,7 @@ cloudinary.config({
  
  
  
-//   // console.log("inside add product");
-//   // console.log(req.file);
-//   // const path=req.body.product.imageUrl.split("C:\\fakepath\\");
-//   // const Product=new ProductData({
-//   //   name:req.body.product.name,
-//   //   price:req.body.product.price,
-//   //   tags:req.body.product.tags,
-//   //   favorite:req.body.product.favorite,
-//   //   stars:req.body.product.stars,
-//   //   imageUrl:"https://shopnowapi-ydrz.onrender.com/images/"+path[1],
-//   //   category:req.body.product.category
-//   // });
-//   // Product.save();
+
 });
 
 
