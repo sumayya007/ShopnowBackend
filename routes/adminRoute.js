@@ -24,9 +24,9 @@ const { db } = require("../models/admin");
 const cloudinary=require('cloudinary').v2;
 
 cloudinary.config({
-    cloud_name:process.env.CLOUDINARY_CLOUD_NAME,
-    api_key:process.env.CLOUDINARY_API_KEY,
-    api_secret:process.env.CLOUDINARY_SECRET_KEY
+    cloud_name:'ds7qwoo2b',
+    api_key:'144671867178944',
+    api_secret:'Fd-l_IWhHWufQBHv0BRg1iNUl9w'
 });
 
 
@@ -48,13 +48,13 @@ cloudinary.config({
 
  cloudinary.uploader.upload(file.tempFilePath,function(err,result){
   console.log(result);
-    if(err){
-    console.log(err);
-    return res.status(500).json({
-      success:false,
-      message:"Error in Result"
-    })
-  }
+  //   if(err){
+  //   console.log(err);
+  //   return res.status(500).json({
+  //     success:false,
+  //     message:"Error in Result"
+  //   })
+  // }
  
     console.log("inside add product");
 
@@ -69,11 +69,11 @@ cloudinary.config({
     category:req.body.product.category
   });
   Product.save();
-  res.status(200).json({
-    success:true,
-    message:"Upladed!",
-    data:result
-  });
+  // res.status(200).json({
+  //   success:true,
+  //   message:"Upladed!",
+  //   data:result
+  // });
  })
  
 });
