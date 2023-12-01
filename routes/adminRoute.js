@@ -41,11 +41,20 @@ cloudinary.config({
 //   });
   
  router.post("/addProduct",(req,res)=>{
-//   res.header("Access-Control-Allow-Origin","https://shopnow-wojb.onrender.com");
-//   res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
+  res.header("Access-Control-Allow-Origin","https://shopnow-wojb.onrender.com");
+  res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
  const file=req.files.image;
+
  cloudinary.uploader.upload(file.tempFilePath,function(err,result){
   console.log(result);
+    if(err){
+    console.log(err);
+    return res.status(500).json({
+      success:false,
+      message:"Error"
+    })
+  }
+ 
     console.log("inside add product");
 
   // const path=req.body.product.imageUrl.split("C:\\fakepath\\");
@@ -59,24 +68,13 @@ cloudinary.config({
     category:req.body.product.category
   });
   Product.save();
-  // if(err){
-  //   console.log(err);
-  //   return res.status(500).json({
-  //     success:false,
-  //     message:"Error"
-  //   })
-  // }
-  // res.status(200).json({
-  //   success:true,
-  //   message:"Upladed!",
-  //   data:result
-  // })
+  res.status(200).json({
+    success:true,
+    message:"Upladed!",
+    data:result
+  });
  })
  
- 
- 
- 
-
 });
 
 
