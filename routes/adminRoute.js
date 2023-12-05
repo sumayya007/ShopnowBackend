@@ -9,6 +9,7 @@ const router = express.Router();
 const path = require('path');
 const jwt = require("jsonwebtoken");
 const { db } = require("../models/admin");
+const multerUploads=require('../multer');
 // const multer=require("multer");
 
 // const storage=multer.diskStorage({
@@ -21,13 +22,7 @@ const { db } = require("../models/admin");
 // });
 
 // const upload=multer({storage:storage});
-const cloudinary=require('cloudinary').v2;
 
-cloudinary.config({
-    cloud_name:'ds7qwoo2b',
-    api_key:'144671867178944',
-    api_secret:'Fd-l_IWhHWufQBHv0BRg1iNUl9w'
-});
 
 
 
@@ -40,41 +35,43 @@ cloudinary.config({
 //   res.send(req.file);
 //   });
   
- router.post("/addProduct",(req,res)=>{
-  res.header("Access-Control-Allow-Origin","https://shopnow-wojb.onrender.com");
-  res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
- const file=req.files.image;
- console.log(file);
-
- cloudinary.uploader.upload(file.tempFilePath,function(err,result){
-  console.log(result);
-  //   if(err){
-  //   console.log(err);
-  //   return res.status(500).json({
-  //     success:false,
-  //     message:"Error in Result"
-  //   })
-  // }
- 
-    console.log("inside add product");
+ router.post("/addProduct",multerUploads,(req,res)=>{
+  if(req.file) {
+    const file = dataUri(req).content;
+    return uploader.upload(file).then((result) => {
+    const image = result.url;
+    const Product=new ProductData({
+      name:req.body.product.name,
+      price:req.body.product.price,
+      tags:req.body.product.tags,
+      favorite:req.body.product.favorite,
+      stars:req.body.product.stars,
+      imageUrl:result.url,
+      category:req.body.product.category
+    });
+    Product.save();
+    return res.status(200).json({
+    messge: 'Your image has been uploded successfully to cloudinary',
+    data: {
+    image
+    }
+    })
+    }).catch((err) => res.status(400).json({
+    messge: 'someting went wrong while processing your request',
+    data: {
+    err
+    }
+    }))
+    }
 
   // const path=req.body.product.imageUrl.split("C:\\fakepath\\");
-  const Product=new ProductData({
-    name:req.body.product.name,
-    price:req.body.product.price,
-    tags:req.body.product.tags,
-    favorite:req.body.product.favorite,
-    stars:req.body.product.stars,
-    imageUrl:result.url,
-    category:req.body.product.category
-  });
-  Product.save();
+
   // res.status(200).json({
   //   success:true,
   //   message:"Upladed!",
   //   data:result
   // });
- })
+ 
  
 });
 

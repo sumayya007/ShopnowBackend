@@ -1,5 +1,5 @@
-const dotenv=require("dotenv");
-dotenv.config({path:"./.env"});
+// const dotenv=require("dotenv");
+// dotenv.config({path:"./.env"});
 // require('dotenv').config();
 const bodyparser = require("body-parser");
 const cors = require("cors");
@@ -12,14 +12,36 @@ const {hash,compare}=require("bcryptjs");
 const userRoute = require("./routes/userRoute");
 const adminRoute = require("./routes/adminRoute");
 const Grid=require('gridfs-stream');
-const multer=require("multer");
+const multerUploads=require("./multer");
 const fileupload=require("express-fileupload");
+/////////////////////////
+import express from 'express';
+import { urlencoded, json } from 'body-parser';
+import { resolve } from  'path';
+import { uploader, cloudinaryConfig } from './config/cloudinaryConfig'
+import { multerUploads, dataUri } from './middlewares/multerUpload';
+const app = express();
+const Port = process.env.PORT || 3000;
+app.use(express.static(resolve(__dirname, '/images')));
+app.use(urlencoded({ extended: false }));
+app.use(json());
+app.use('*', cloudinaryConfig);
 
-const PORT = process.env.PORT || 3000;
-const app = new express();
-app.use(fileupload({
-  useTempFiles:true
-}))
+
+
+
+
+
+
+
+
+
+////////////////////////
+
+
+// app.use(fileupload({
+//   useTempFiles:true
+// }))
 app.use(cors({
   origin: 'https://shopnow-wojb.onrender.com', 
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'],
@@ -33,7 +55,7 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended: true}));
 
 let gfs;
-app.use("/images",express.static(path.join(__dirname+"/images")));
+// app.use("/images",express.static(path.join(__dirname+"/images")));
 // app.use('/uploads', express.static(__dirname));
 // app.use("/images",express.static(path.join("/images")));
 
@@ -41,7 +63,8 @@ app.use("/images",express.static(path.join(__dirname+"/images")));
 app.use("/user", userRoute);
 app.use("/admin",adminRoute);
 
-app.use(multer({dest:'./images'}).single('imageUrl'));
+// app.use(multer({dest:'./images'}).single('imageUrl'));
 app.listen(PORT, () => {
   console.log(`listening to ${PORT}`);
 });
+
