@@ -9,5 +9,5 @@ api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 next();
 }
-export { cloudinaryConfig, uploader };
+module.exports={ cloudinaryConfig, uploader };
 
