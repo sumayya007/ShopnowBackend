@@ -12,14 +12,14 @@ const {hash,compare}=require("bcryptjs");
 const userRoute = require("./routes/userRoute");
 const adminRoute = require("./routes/adminRoute");
 const Grid=require('gridfs-stream');
-const multerUploads=require("./multer");
+
 const fileupload=require("express-fileupload");
 /////////////////////////
 
 const { urlencoded, json }=require('body-parser');
 const { resolve }=require('path');
-const { uploader, cloudinaryConfig }=require('./config/cloudinaryConfig');
-const { multerUploads, dataUri }=require('./middlewares/multerUpload');
+const { uploader, cloudinaryConfig }=require('./cloudinaryConfig');
+const { multerUploads, dataUri }=require('./multer');
 const app = express();
 const Port = process.env.PORT || 3000;
 app.use(express.static(resolve(__dirname, '/images')));
