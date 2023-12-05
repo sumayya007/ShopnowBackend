@@ -10,6 +10,7 @@ const path = require('path');
 const jwt = require("jsonwebtoken");
 const { db } = require("../models/admin");
 const multerUploads=require('../multer');
+const dataUri=require("../datauri");
 // const multer=require("multer");
 
 // const storage=multer.diskStorage({
