@@ -18,14 +18,14 @@ const fileupload=require("express-fileupload");
 
 const { urlencoded, json }=require('body-parser');
 const { resolve }=require('path');
-const { uploader, cloudinaryConfig }=require('./cloudinaryConfig');
+const cloudinary=require('./cloudinaryConfig');
 const { multerUploads, dataUri }=require('./multer');
 const app = express();
 const Port = process.env.PORT || 3000;
 app.use(express.static(resolve(__dirname, '/images')));
 app.use(urlencoded({ extended: false }));
 app.use(json());
-app.use('*', cloudinaryConfig);
+app.use('*', cloudinary);
 ////////////////////////
 
 
