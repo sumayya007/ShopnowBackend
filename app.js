@@ -25,7 +25,7 @@ const Port = process.env.PORT || 3000;
 app.use(express.static(resolve(__dirname, '/images')));
 app.use(urlencoded({ extended: false }));
 app.use(json());
-app.use('*', cloudinary);
+
 ////////////////////////
 
 
