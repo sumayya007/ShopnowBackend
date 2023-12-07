@@ -6,7 +6,7 @@ const CategoryData=require("../models/category");
 const CartItemData=require("../models/cartitem");
 
 const router = express.Router();
-const path = require('path');
+
 const jwt = require("jsonwebtoken");
 const { db } = require("../models/admin");
 const multerUploads=require('../multer');

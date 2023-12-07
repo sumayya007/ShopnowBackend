@@ -8,7 +8,7 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 const { ObjectId } = require('mongodb');
 
-const path = require("path");
+
 const cookieParser=require("cookie-parser");
 const {verify}=require("jsonwebtoken");
 const {hash,compare}=require("bcryptjs");
