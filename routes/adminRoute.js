@@ -9,8 +9,22 @@ const router = express.Router();
 
 const jwt = require("jsonwebtoken");
 const { db } = require("../models/admin");
-const multerUploads=require('../multer');
-const cloudinary=require('../cloudinaryConfig');
+// const multerUploads=require('../multer');
+
+// const cloudinary=require('../cloudinaryConfig');
+const multer=require('multer');
+
+const storage = multer.memoryStorage();
+const uploads = multer({ storage }).single('image');
+
+const cloudinary=require('cloudinary').v2;
+const dotenv=require('dotenv');
+dotenv.config();
+cloudinary.config({
+cloud_name: 'ds7qwoo2b',
+api_key: '144671867178944',
+api_secret: 'Fd-l_IWhHWufQBHv0BRg1iNUl9w',
+});
 // const dataUri=require("../datauri");
 // const multer=require("multer");
 
@@ -37,44 +51,38 @@ const cloudinary=require('../cloudinaryConfig');
 //   res.send(req.file);
 //   });
   
- router.post("/addProduct",multerUploads,(req,res)=>{
-  if(req.file) {
-    // const file = dataUri(req).content;
-    cloudinary.uploader.upload(req.file).then((result) => {
-    const image = result.url;
-    console.log(image);
-    const Product=new ProductData({
-      name:req.body.product.name,
-      price:req.body.product.price,
-      tags:req.body.product.tags,
-      favorite:req.body.product.favorite,
-      stars:req.body.product.stars,
-      imageUrl:result.url,
-      category:req.body.product.category
-    });
-    Product.save();
-    return res.status(200).json({
-    messge: 'Your image has been uploded successfully to cloudinary',
-    data: {
-    image
-    }
-    })
-    }).catch((err) => res.status(400).json({
-    messge: 'someting went wrong while processing your request',
-    data: {
-    err
-    }
-    }))
-    }
+ router.post("/addProduct",uploads,(req,res)=>{
+  // if(req.file) {
+  //   // const file = dataUri(req).content;
+  //   cloudinary.uploader.upload(req.file).then((result) => {
+  //   const image = result.url;
+  //   console.log(image);
+  //   const Product=new ProductData({
+  //     name:req.body.product.name,
+  //     price:req.body.product.price,
+  //     tags:req.body.product.tags,
+  //     favorite:req.body.product.favorite,
+  //     stars:req.body.product.stars,
+  //     imageUrl:result.url,
+  //     category:req.body.product.category
+  //   });
+  //   Product.save();
+  //   return res.status(200).json({
+  //   messge: 'Your image has been uploded successfully to cloudinary',
+  //   data: {
+  //   image
+  //   }
+  //   })
+  //   }).catch((err) => res.status(400).json({
+  //   messge: 'someting went wrong while processing your request',
+  //   data: {
+  //   err
+  //   }
+  //   }))
+  //   }
 
-  // const path=req.body.product.imageUrl.split("C:\\fakepath\\");
 
-  // res.status(200).json({
-  //   success:true,
-  //   message:"Upladed!",
-  //   data:result
-  // });
- 
+ console.log(req.file);
  
 });
 
