@@ -54,7 +54,7 @@ app.use("/user", userRoute);
 app.use("/admin",adminRoute);
 
 // app.use(multer({dest:'./images'}).single('imageUrl'));
-app.listen(PORT, () => {
-  console.log(`listening to ${PORT}`);
+app.listen(Port, () => {
+  console.log(`listening to ${Port}`);
 });
 
