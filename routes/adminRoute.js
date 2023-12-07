@@ -51,7 +51,7 @@ api_secret: 'Fd-l_IWhHWufQBHv0BRg1iNUl9w',
 //   res.send(req.file);
 //   });
   
- router.post("/addProduct",uploads,(req,res)=>{
+ router.post("/addProduct",(req,res)=>{
   // if(req.file) {
   //   // const file = dataUri(req).content;
   //   cloudinary.uploader.upload(req.file).then((result) => {
@@ -82,7 +82,7 @@ api_secret: 'Fd-l_IWhHWufQBHv0BRg1iNUl9w',
   //   }
 
 
- console.log(req.file);
+ console.log(req.body);
  
 });
 
