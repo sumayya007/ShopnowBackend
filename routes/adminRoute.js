@@ -10,7 +10,8 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 const { db } = require("../models/admin");
 const multerUploads=require('../multer');
-const dataUri=require("../datauri");
+const cloudinary=require('../cloudinaryConfig');
+// const dataUri=require("../datauri");
 // const multer=require("multer");
 
 // const storage=multer.diskStorage({
@@ -38,9 +39,10 @@ const dataUri=require("../datauri");
   
  router.post("/addProduct",multerUploads,(req,res)=>{
   if(req.file) {
-    const file = dataUri(req).content;
-    return uploader.upload(file).then((result) => {
+    // const file = dataUri(req).content;
+    cloudinary.uploader.upload(req.file).then((result) => {
     const image = result.url;
+    console.log(image);
     const Product=new ProductData({
       name:req.body.product.name,
       price:req.body.product.price,
