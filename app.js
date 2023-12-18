@@ -18,8 +18,9 @@ const fileupload=require("express-fileupload");
 
 const { urlencoded, json }=require('body-parser');
 const path=require('path');
-const cloudinary=require('./cloudinaryConfig');
-const { multerUploads, dataUri }=require('./multer');
+const cloudinary=require('./cloudinary');
+const upload=require('./multer');
+const fs=require('fs');
 const app = express();
 const Port = process.env.PORT || 3000;
 // app.use(express.static(resolve(__dirname, '/images')));
@@ -42,7 +43,7 @@ app.use(cors({
 // app.use(cors());
 app.use(cookieParser());
 app.use(bodyparser.json());
-app.use(bodyparser.urlencoded({extended: true}));
+app.use(bodyparser.urlencoded({extended: false}));
 
 let gfs;
 app.use("/images",express.static(path.join(__dirname+"/images")));

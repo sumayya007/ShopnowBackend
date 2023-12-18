@@ -214,6 +214,13 @@ router.post("/login", (req, res) => {
         res.send("deleted");
     })
   });
+
+  router.post('/createProduct',(req,res)=>{
+
+  });
+
+
+
   router.put("/updateproduct",(req,res)=>{
     console.log(req.body);
     id=req.body._id;
