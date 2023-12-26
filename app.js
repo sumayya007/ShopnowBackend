@@ -19,7 +19,7 @@ const fileupload=require("express-fileupload");
 const { urlencoded, json }=require('body-parser');
 const path=require('path');
 
-const upload=require('./multer');
+
 const fs=require('fs');
 const app = express();
 const Port = process.env.PORT || 3000;
