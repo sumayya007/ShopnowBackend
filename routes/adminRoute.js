@@ -25,24 +25,7 @@ cloudinary.v2.config({
 
 const dotenv=require('dotenv');
  dotenv.config();
-// cloudinary.config({
-// cloud_name: 'ds7qwoo2b',
-// api_key: '144671867178944',
-// api_secret: 'Fd-l_IWhHWufQBHv0BRg1iNUl9w',
-// });
-// const dataUri=require("../datauri");
-// const multer=require("multer");
 
-// const storage=multer.diskStorage({
-//   destination:function(req,file,cb){
-//     cb(null,"../images");
-//   },
-//   filename:function(req,file,cb){
-//     cb(null,file.originalname)
-//   }
-// });
-
-// const upload=multer({storage:storage});
 
 
 
@@ -239,24 +222,23 @@ router.post("/login", (req, res) => {
         category:req.body.product.category
       });
       Product.save();
-      return res.status(200).json({
-      messge: 'Your image has been uploded successfully to cloudinary',
-      data: {
-      image
-      }
-      })
-      }).catch((err) => res.status(400).json({
-      messge: 'someting went wrong while processing your request',
-      data: {
-      err
-      }
-      }))
-      }
-  
-  
-   console.log("hello");
-  });
-
+    });
+  }
+});
+      // return res.status(200).json({
+      // messge: 'Your image has been uploded successfully to cloudinary',
+      // data: {
+      // image
+      // }
+      // })
+      // })
+      // .catch((err) => res.status(400).json({
+      // messge: 'someting went wrong while processing your request',
+      // data: {
+      // err
+      // }
+      // }))
+     
 
 
   router.put("/updateproduct",(req,res)=>{
