@@ -212,7 +212,7 @@ router.post("/login", (req, res) => {
       // const file = dataUri(req).content;
       cloudinary.uploader.upload(req.file).then((result) => {
       const image = result.url;
-      console.log(image);
+      console.log("result",result.url);
     });
       const Product=new ProductData({
         name:req.body.product.name,
