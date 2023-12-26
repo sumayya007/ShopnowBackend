@@ -9,13 +9,11 @@ const router = express.Router();
 
 const jwt = require("jsonwebtoken");
 const { db } = require("../models/admin");
-// const multerUploads=require('../multer');
 
-// const cloudinary=require('../cloudinaryConfig');
 const multer=require('multer');
 
 const storage = multer.memoryStorage();
-const upload = multer({ storage }).single('image');
+const upload = multer({ storage:storage});
 const cloudinary = require('cloudinary');
 
 cloudinary.v2.config({
@@ -24,7 +22,7 @@ cloudinary.v2.config({
   api_secret: 'Fd-l_IWhHWufQBHv0BRg1iNUl9w',
   secure: true,
 });
-// const cloudinary=require('cloudinary').v2;
+
 const dotenv=require('dotenv');
  dotenv.config();
 // cloudinary.config({
@@ -58,8 +56,11 @@ const dotenv=require('dotenv');
 //   res.send(req.file);
 //   });
   
- router.post("/addProduct",upload,(req,res)=>{
+ router.post("/addProduct",upload.single('image'),(req,res)=>{
+  console.log(req.body.file);
+  console.log(req.file);
   if(req.file) {
+    
     // const file = dataUri(req).content;
     cloudinary.uploader.upload(req.file).then((result) => {
     const image = result.url;

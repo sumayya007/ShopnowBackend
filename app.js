@@ -18,7 +18,7 @@ const fileupload=require("express-fileupload");
 
 const { urlencoded, json }=require('body-parser');
 const path=require('path');
-const cloudinary=require('./cloudinary');
+
 const upload=require('./multer');
 const fs=require('fs');
 const app = express();
@@ -50,14 +50,7 @@ app.use("/images",express.static(path.join(__dirname+"/images")));
 // app.use('/uploads', express.static(__dirname));
 // app.use("/images",express.static(path.join("/images")));
 
-const cloudinary = require('cloudinary');
 
-cloudinary.v2.config({
-  cloud_name: 'ds7qwoo2b',
-  api_key: '144671867178944',
-  api_secret: 'Fd-l_IWhHWufQBHv0BRg1iNUl9w',
-  secure: true,
-});
 app.use("/user", userRoute);
 app.use("/admin",adminRoute);
 
