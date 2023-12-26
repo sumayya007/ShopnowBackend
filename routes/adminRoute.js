@@ -207,7 +207,8 @@ router.post("/login", (req, res) => {
   });
 
   router.post('/createProduct',upload.single("image"),(req,res)=>{
-    
+    res.header("Access-Control-Allow-Origin","https://shopnow-wojb.onrender.com");
+    res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
       // const file = dataUri(req).content;
       cloudinary.uploader.upload(req.file).then((result) => {
       const image = result.url;
