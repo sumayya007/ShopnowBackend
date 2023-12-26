@@ -206,12 +206,13 @@ router.post("/login", (req, res) => {
     })
   });
 
-  router.post('/createProduct',upload,(req,res)=>{
-    if(req.file) {
+  router.post('/createProduct',upload.single("image"),(req,res)=>{
+    
       // const file = dataUri(req).content;
       cloudinary.uploader.upload(req.file).then((result) => {
       const image = result.url;
       console.log(image);
+    });
       const Product=new ProductData({
         name:req.body.product.name,
         price:req.body.product.price,
@@ -222,8 +223,7 @@ router.post("/login", (req, res) => {
         category:req.body.product.category
       });
       Product.save();
-    });
-  }
+    
 });
       // return res.status(200).json({
       // messge: 'Your image has been uploded successfully to cloudinary',
