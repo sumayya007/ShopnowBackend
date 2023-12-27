@@ -210,10 +210,15 @@ router.post("/login", (req, res) => {
     res.header("Access-Control-Allow-Origin","https://shopnow-wojb.onrender.com");
     res.header('Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS');
       // const file = dataUri(req).content;
+      console.log(req.body.file);
+      console.log(req.file);
+
+
       cloudinary.uploader.upload(req.file).then((result) => {
       const image = result.url;
       console.log("result",result.url);
     });
+    
       const Product=new ProductData({
         name:req.body.product.name,
         price:req.body.product.price,
