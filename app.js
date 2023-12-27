@@ -34,7 +34,7 @@ app.use(json());
 //   useTempFiles:true
 // }))
 app.use(cors({
-  origin: 'https://shopnow-wojb.onrender.com', 
+  origin: 'https://shopnow-wojb.onrender.com','http://localhost:4200',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Origin', 'X-Requested-With', 'Accept', 'x-client-key', 'x-client-token', 'x-client-secret', 'Authorization'],
   credentials: true
